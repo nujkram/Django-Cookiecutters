@@ -1,0 +1,12 @@
+{
+    "project_name": "Servio Django Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}",
+    "description": "Description for {{ cookiecutter.project_name }}",
+    "author_name": "Jorge Cosgayon",
+    "author_slug": "{{ cookiecutter.author_name[0].lower() }}{{ cookiecutter.author_name.split(' ')[-1].lower() }}",
+    "domain_name": "{{ cookiecutter.project_slug }}.local",
+    "email": "{{ cookiecutter.author_slug }}@servio.ph",
+    "version": "0.0.1",
+    "ip": "http://192.168.4.50",
+    "django_version": "3.0.2"
+}

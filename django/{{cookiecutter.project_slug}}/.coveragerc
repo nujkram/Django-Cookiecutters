@@ -1,0 +1,22 @@
+[run]
+omit =
+    *apps.py,
+    *migrations/*,
+    *settings*,
+    *tests/*
+    *urls.py,
+    *wsgi.py,
+    *asgi.py,
+    manage.py,
+    *.txt,
+    *.sh,
+    *.ini,
+    *.md,
+    *forms.py,
+    *routing.py,
+    *__init__.py,
+    *admin.py,
+    *get-pip.py,
+    *tests.py,
+    *constants.py,
+    *{{ cookiecutter.project_slug }}/*,

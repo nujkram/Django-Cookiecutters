@@ -1,0 +1,22 @@
+{% raw %}{% extends 'dashboards/base.html' %}
+{% block header_css %} {% endblock %}
+{% block header_js %} {% endblock %}
+{% block home_url %}
+<a href="" class="spur-logo"><i class="fas fa-bolt"></i>
+    <span>{% endraw %}{{ cookiecutter.project_name }}{% raw %}</span></a>
+{% endblock %}
+{% block sidebar %}
+{% include "dashboards/profiles/common/sidebar.html" %}
+{% endblock %}
+{% block topbar %}
+    {% include "dashboards/profiles/common/topbar.html" %}
+{% endblock %}
+<main class="dash-content">
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+{% block scripts %}{% endblock %}
+{% endraw %}

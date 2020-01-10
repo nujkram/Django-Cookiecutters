@@ -1,0 +1,48 @@
+{% raw %}{% extends 'dashboards/profiles/profile_base.html' %}
+{% load static %}
+{% block header_css %}
+{% endblock %}
+
+{% block content %}
+    <!-- content -->
+    <div class="card spur-card">
+        <div class="card-header">
+            <div class="spur-card-icon">
+                <i class="fas fa-table"></i>
+            </div>
+            <div class="spur-card-title">Profile Actions</div>
+        </div>
+        <div class="card-body">
+            <div class="subtle-features">
+                <div class="feature">
+                    <div class="heading">Update Account</div>
+                    <div class="summary">
+                        Username, Password, and Email
+                    </div>
+                    <div class="actions">
+                        <a href="{% url 'account_update_view' %}" class="text-primary">Update Account</a>
+                        <a href="{% url 'account_password_view' %}" class="text-warning">Update Password</a>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="heading">Update Profile</div>
+                    <div class="summary">
+                        Name, Date of Birth, Gender
+                    </div>
+                    <div class="actions">
+                        <a href="{% url 'profile_update_view' %}" class="text-primary">Update</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- /content -->
+{% endblock %}
+{% block scripts %}
+
+
+{% endblock %}
+{% endraw %}

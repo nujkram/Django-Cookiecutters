@@ -1,0 +1,73 @@
+{% raw %}{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% endraw %}{{ cookiecutter.project_name }}{% raw %} Dashboard &mdash; {{ page_title }}</title>
+    <link rel="stylesheet" href="{% static 'common/css/fontawesome.all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/spur.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/jquery.toast.min.css' %}">
+
+
+
+    {% block header_css %} {% endblock %}
+    {% block header_js %} {% endblock %}
+
+
+</head>
+<body>
+
+<div class="dash">
+    <div class="dash-nav dash-nav-dark">
+        <header>
+            <a href="#!" class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </a>
+
+            {% block home_url %}
+            {% endblock %}
+
+        </header>
+
+        {% block sidebar %}
+        {% endblock %}
+
+
+    </div>
+    <div class="dash-app">
+        {% block topbar %}
+        {% endblock %}
+        {% block breadcrumbs %}{% endblock %}
+        <main class="dash-content">
+            <div class="container-fluid">
+                <h1 class="dash-title">{{ page_title }}</h1>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}">
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% block content %}
+                {% endblock %}
+
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="{% static 'common/js/jquery-3.4.0.min.js' %}"></script>
+<script src="{% static 'common/js/popper.min.js' %}"></script>
+<script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'dashboard/js/spur.js' %}"></script>
+<script src="{% static 'common/js/jquery.loadTemplate.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.toast.min.js' %}"></script>
+
+
+{% block scripts %}{% endblock %}
+
+</body>
+</html>{% endraw %}

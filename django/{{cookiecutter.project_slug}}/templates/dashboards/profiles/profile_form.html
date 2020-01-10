@@ -1,0 +1,44 @@
+{% raw %}{% extends 'dashboards/profiles/profile_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block header_css %}
+{% endblock %}
+
+{% block content %}
+    <!-- content -->
+    <div class="card spur-card">
+        <div class="card-header">
+            <div class="spur-card-icon">
+                <i class="fas fa-table"></i>
+            </div>
+            <div class="spur-card-title">Update Profile</div>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- /content -->
+{% endblock %}
+{% block scripts %}
+{{ form.media }}
+
+    <script type="text/javascript">
+        $("#id_date_of_birth").datepicker({
+            format: 'yyyy-mm-dd',
+            footer: true,
+            modal: true,
+            header: true,
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome'
+        });
+    </script>
+
+{% endblock %}
+{% endraw %}

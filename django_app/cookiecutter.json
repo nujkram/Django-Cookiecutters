@@ -1,0 +1,10 @@
+{
+    "project_name": "SV Django Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}",
+    "description": "Description for {{ cookiecutter.project_name }}",
+    "author_name": "Jorge",
+    "version": "0.0.1",
+    "app_name": "My App",
+    "app_class": "{{ cookiecutter.app_name.title().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}",
+    "app": "{{ cookiecutter.app_name.lower().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}s"
+}

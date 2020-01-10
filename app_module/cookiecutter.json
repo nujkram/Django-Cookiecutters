@@ -1,0 +1,17 @@
+{
+    "project_name": "SV Django Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}",
+    "description": "Description for {{ cookiecutter.project_name }}",
+    "author_name": "Jorge",
+    "version": "0.0.1",
+    "app_name": "My App",
+    "app_class": "{{ cookiecutter.app_name.title().replace(' ', '').replace('-', '').replace('.', '').strip() }}",
+    "app": "{{ cookiecutter.app_name.lower().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}s",
+    "module_name": "My Module",
+    "module_class": "{{ cookiecutter.module_name.title().replace(' ', '').replace('-', '').replace('.', '').strip() }}",
+    "module": "{{ cookiecutter.module_name.lower().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}",
+    "module_plural": "{{ cookiecutter.module }}s",
+    "model": "{{ cookiecutter.module_name.title().replace(' ', '').replace('-', '').replace('.', '').strip() }}",
+    "model_verbose": "{{ cookiecutter.module_name }}",
+    "model_verbose_plural": "{{ cookiecutter.module_name }}s"
+}

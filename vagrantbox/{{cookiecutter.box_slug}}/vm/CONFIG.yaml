@@ -1,0 +1,107 @@
+---
+# | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+# | Fast Config - Ths is the most basic configuration for a fast deploy
+# | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+# |                              ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+local_domain : &local_domain    '{{ cookiecutter.local_domain }}'
+private_ip   : &private_ip      '{{ cookiecutter.ip }}'
+machine_name : &machine_name    '{{ cookiecutter.project_slug }}'
+machine_ram  : &machine_ram     '{{ cookiecutter.ram }}' # auto, 1024
+machine_cpu  : &machine_cpu     '{{ cookiecutter.cpu }}' # auto, 1
+vagrant_box  : &vagrant_box     '{{ cookiecutter.os }}' # bento/ubuntu-16.04
+# |                              ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+
+# | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+# | ### Config VirtualBox VM
+# | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+
+# | ······ Set Domain URL
+wpDomain               : *local_domain
+
+vms:
+  - name               : *machine_name
+    box                : *vagrant_box
+    # box_version        : 201708.22.0
+    box_check_update   : false
+    ram                : *machine_ram
+    cpus               : *machine_cpu
+
+  # | ······ Defining Netword
+    private_network :
+
+      # | Option 1 - Specify a static IP address for the machine
+      ip_private       : *private_ip
+
+      # | Option 2 - If you want to manually configure the network interface
+      # | yourself, you can disable Vagrant's auto-configure feature.
+      # auto_config      : false
+
+      # | Option 3 - The easiest way to use a private network is to allow the IP
+      # | to be assigned via DHCP.
+      # type             : dhcp
+
+    public_network :
+
+      # | Option 1 - Static IP bridge
+      ip_public        : {{ cookiecutter.public_ip }}
+
+      # | Option 2 - Basic Config public_network
+      # ip_public        : auto
+
+      # | Option 3 - Using the DHCP Assigned Default Route
+      # ip_public        : true
+
+      # | Option 4 - Static IP select bridge
+      # ip_public        : 192.168.0.70
+      # bridge           : 'eth0'
+
+
+  # | ······ Defining a Forwarded Port
+    ports :
+
+      - guest          : 8080
+        host           : 8080
+
+      # - guest          : 8088
+      #   host           : 8088
+
+  # | ······ Config Synced folders
+    syncDir :
+      - host           : bash
+        guest          : /home/vagrant/bash
+        dmode          : 766
+        fmode          : 766
+        owner          : vagrant
+        group          : vagrant
+
+      - host           : ../{{ cookiecutter.app_folder }}
+        guest          : /{{ cookiecutter.app_folder }}
+        dmode          : 766
+        fmode          : 766
+        owner          : vagrant
+        group          : vagrant        
+
+      - host           : html
+        guest          : /var/www/html
+        owner          : vagrant
+        group          : www-data
+        dmode          : 775
+        fmode          : 775
+
+      - host           : ../documentation
+        guest          : /home/vagrant/documentation
+        owner          : vagrant
+        group          : vagrant
+        dmode          : 775
+        fmode          : 775
+
+  # | ······ GUI
+      # gui              : true
+
+  # | ······ Bash privision
+    bash             : bash/init.sh
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░

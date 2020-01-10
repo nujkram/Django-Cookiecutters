@@ -1,0 +1,20 @@
+{
+    "project_name": "Servio Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '').replace('-', '').replace('.', '').strip() }}",
+    "description": "Description for {{ cookiecutter.project_name }}",
+    "author_name": "Jorge Cosgayon",
+    "author_slug": "{{ cookiecutter.author_name[0].lower() }}{{ cookiecutter.author_name.split(' ')[-1].lower() }}",
+    "email": "{{ cookiecutter.author_slug }}@servio.ph",
+    "version": "0.0.1",
+    "user_type": "ADM",
+    "user": "admin",
+    "user_type_verbose": "{{ cookiecutter.user.title() }}",
+    "app_singular": "global_setting",
+    "app": "{{ cookiecutter.app_singular }}s",
+    "parent": "{{ cookiecutter.app }}",
+    "model_verbose": "Global Setting",
+    "model_verbose_plural": "{{ cookiecutter.model_verbose }}s",
+    "model": "{{ cookiecutter.model_verbose.replace(' ', '') }}",
+    "menu_section": "{{ cookiecutter.parent }}",
+    "menu_subsection": "{{ cookiecutter.app}}"
+}

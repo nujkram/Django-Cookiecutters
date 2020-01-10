@@ -1,0 +1,17 @@
+{
+    "full_name": "Jorge Cosgayon",
+    "email": "jorge@springvalley.tech",
+    "project": "New SV Project",
+    "project_slug": "{{ cookiecutter.project.lower().replace(' ', '_').replace('-', '_') }}",
+    "box": "{{ cookiecutter.project }} Vagrant Box",
+    "box_slug": "{{ cookiecutter.box.lower().replace(' ', '_').replace('-', '_') }}",
+    "version": "0.0.1",
+    "os": "ubuntu/bionic64",
+    "ram": "1024",
+    "cpu": "1",
+    "local_domain": "{{ cookiecutter.project_slug }}.local",
+    "ip": "192.168.4.50",
+    "public_ip": "192.168.10.110",
+    "app_folder": "{{ cookiecutter.project_slug }}"
+  }
+  
