@@ -5,8 +5,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 
-from accounts.constants import USER_DASHBOARD_ROOTS
-from accounts.controllers.views.forms import LoginForm
+from accounts.models.account.constants import USER_DASHBOARD_ROOTS
+from .forms.account_forms import LoginForm
 
 
 class AccountLoginView(View):

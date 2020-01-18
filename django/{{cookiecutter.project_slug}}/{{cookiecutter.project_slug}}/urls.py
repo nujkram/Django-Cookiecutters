@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from accounts.controllers.views import AccountLoginView
+from accounts.controllers.views.account.main import AccountLoginView 
+from accounts.models.account.constants import ADMIN_URL
 
 URL_READ_ONLY = {
     'get': 'list'
@@ -46,20 +47,13 @@ URL_DELETE = {
 
 urlpatterns = [
     path('', AccountLoginView.as_view(), name='root'),
-    path('kfaf455ol5y2z4r53u44orsoc9rrvhw1cwn3jxee/', admin.site.urls),
+    path(ADMIN_URL, admin.site.urls),
 
     path('profile/', include('profiles.urls')),
     path('accounts/', include('accounts.urls')),
-    path('locations/', include('locations.urls')),
 
 
     # dashboards
-    # snippets
-    path('snippets/loader',
-         TemplateView.as_view(
-             template_name='common/snippets/loader.html'
-         ),
-         name='loader'),
 ]
 
 if settings.DEBUG:

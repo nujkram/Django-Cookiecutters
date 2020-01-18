@@ -1,0 +1,8 @@
+{
+    "app_verbose": "Servio Flutter Project",
+    "app": "{{ cookiecutter.app_verbose.lower().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}",
+    "author_name": "Jorge Cosgayon",
+    "author_slug": "{{ cookiecutter.author_name[0].lower() }}{{ cookiecutter.author_name.split(' ')[-1].lower() }}",
+    "email": "{{ cookiecutter.author_slug }}@servio.ph",
+    "version": "0.0.1"
+}

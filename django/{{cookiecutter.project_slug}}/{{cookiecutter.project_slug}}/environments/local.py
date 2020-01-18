@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import random
+import string
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from os.path import dirname, abspath, basename
@@ -29,18 +31,34 @@ ALLOWED_HOSTS = ['*']
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g2266(xrv%uqs4el9=$pr@$(hk228iagua!7!a*@z@r%md%1#s'
+try:
+    with open(os.path.join(BASE_DIR, 'SECRET_KEY')) as f:
+        SECRET_KEY = f.read().strip()
+except FileNotFoundError:
+    generated_key = ''.join([random.SystemRandom().choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(50)])
+    secret = open(os.path.join(BASE_DIR, 'SECRET_KEY'), 'w')
+    secret.write(generated_key)
+    secret.close()
+    SECRET_KEY = generated_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+try:
+    with open(os.path.join(BASE_DIR, 'DEBUG')) as f:
+        _debug = f.read().strip()
+        if _debug != "DO-NOT-USE-IN-PRODUCTION":
+            DEBUG = False
+        else:
+            DEBUG = True
+except FileNotFoundError:
+    DEBUG = False
+
 ########################################################################################################################
 # DEBUG TOOLBAR SETTINGS
 ########################################################################################################################
 INTERNAL_IPS = [
     '127.0.0.1',
     '0.0.0.0',
-
-    '192.168.4.50',
 ]
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.versions.VersionsPanel',
@@ -59,7 +77,9 @@ DEBUG_TOOLBAR_PANELS = [
 
 
 def show_toolbar(request):
-    return True
+    if DEBUG:
+        return True
+    return False
 
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -77,7 +97,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/{{ cookiecutter.project_slug }}/logs/debug.log',
+            'filename': 'logs/debug.log',
         },
     },
     'formatters': {
@@ -104,10 +124,10 @@ LOGGING = {
 ########################################################################################################################
 AUTH_USER_MODEL = 'accounts.Account'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_EMAIL_FIELD = 'email'
 # LOGIN_REDIRECT_URL = '/accounts/postlogin'
@@ -181,12 +201,12 @@ ASGI_APPLICATION = "{{ cookiecutter.project_slug }}.routing.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ cookiecutter.project_slug }}_db',
-        'USER': '{{ cookiecutter.project_slug }}_user',
-        'PASSWORD': 'asdf1234',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': '{{ cookiecutter.db_engine }}',
+        'NAME': '{{ cookiecutter.db_name }}',
+        'USER': '{{ cookiecutter.db_user }}',
+        'PASSWORD': '{{ cookiecutter.db_password }}',
+        'HOST': '{{ cookiecutter.db_host }}',
+        'PORT': '{{ cookiecutter.db_port }}',
     }
 }
 
@@ -227,16 +247,22 @@ USE_TZ = True
 ########################################################################################################################
 # STATIC FILES AND MEDIA
 ########################################################################################################################
+{% if cookiecutter.use_webserver == "yes" %}
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "{{ cookiecutter.static_path }}")
 ]
 
-STATIC_URL = f'{SITE_URL}/static/'
-STATIC_ROOT = '/var/www/html/static/'
+STATIC_URL = f'{SITE_URL}/{{ cookiecutter.static_path }}/'
+STATIC_ROOT = '{{ cookiecutter.webserver_path }}/{{ cookiecutter.static_path }}/'
 
-MEDIA_URL = f'{SITE_URL}/media/'
-MEDIA_ROOT = '/var/www/html/media/'
+MEDIA_URL = f'{SITE_URL}/{{ cookiecutter.media_path }}/'
+MEDIA_ROOT = '{{ cookiecutter.webserver_path }}/{{ cookiecutter.media_path }}/'
 TEMPORARY_MEDIA = '{}temp'.format(MEDIA_ROOT)
+
+{% else %}
+STATIC_URL = '/{{ cookiecutter.static_path }}'
+
+{% endif %}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

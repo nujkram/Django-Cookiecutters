@@ -1,0 +1,12 @@
+{
+    "app_verbose": "Servio Flutter Project",
+    "app": "{{ cookiecutter.app_verbose.lower().replace(' ', '_').replace('-', '_').replace('.', '_').strip() }}",
+    "author_name": "Jorge Cosgayon",
+    "author_slug": "{{ cookiecutter.author_name[0].lower() }}{{ cookiecutter.author_name.split(' ')[-1].lower() }}",
+    "email": "{{ cookiecutter.author_slug }}@servio.ph",
+    "version": "0.0.1",
+    "widget": "app_button",
+    "widget_class": "AppButton",
+    "widget_camel": "{{ cookiecutter.widget_class[0].lower() }}{{ cookiecutter.widget_class[1:] }}",
+    "widget_base": "RaisedButton"
+}

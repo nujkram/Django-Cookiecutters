@@ -7,6 +7,16 @@
     "domain_name": "{{ cookiecutter.project_slug }}.local",
     "email": "{{ cookiecutter.author_slug }}@servio.ph",
     "version": "0.0.1",
-    "ip": "http://192.168.4.50",
-    "django_version": "3.0.2"
+    "ip": "http://localhost",
+    "django_version": "3.0.2",
+    "db_engine": "django.db.backends.postgresql_psycopg2",
+    "db_name": "{{ cookiecutter.project_slug }}_db",
+    "db_user": "{{ cookiecutter.project_slug }}_user",
+    "db_password": "asdf1234",
+    "db_host": "localhost",
+    "db_port": "",
+    "use_webserver": "yes",
+    "webserver_path": "/var/www/html",
+    "static_path": "static",
+    "media_path": "media"
 }

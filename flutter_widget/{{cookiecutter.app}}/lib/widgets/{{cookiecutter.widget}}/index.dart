@@ -1,0 +1,1 @@
+export '{{cookiecutter.widget}}.dart';

@@ -1,4 +1,5 @@
-Django={{ cookiecutter.django_version }}
+Django=={{ cookiecutter.django_version }}
+Cython
 amqp
 aniso8601
 arrow
@@ -13,13 +14,12 @@ backcall
 billiard
 celery
 channels
+channels-redis
 chardet
 constantly
 coverage
 daphne
 decorator
-django-adminlte2
-django-autocomplete-light
 django-cors-headers
 django-crispy-forms
 django-debug-toolbar
@@ -31,11 +31,6 @@ django-split-settings
 djangorestframework
 factory-boy
 Faker
-graphene
-graphene-django
-graphene-django-extras
-graphq
-graphql-relay
 gunicorn
 hyperlink
 idna
@@ -50,15 +45,12 @@ numpy
 pandas
 parso
 pexpect
-phonenumberslite
 pickleshare
-pkg-resources
 pluggy
 promise
 prompt-toolkit
 psycopg2
 ptyprocess
-py
 py-moneyed
 Pycco
 Pygments
@@ -67,7 +59,6 @@ pystache
 pytest
 python-dateutil
 pytz
-Rx
 singledispatch
 six
 smartypants

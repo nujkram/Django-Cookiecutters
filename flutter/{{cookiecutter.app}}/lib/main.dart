@@ -1,0 +1,14 @@
+///////////////////////////////////////////////////////////////////////////////
+// {{ cookiecutter.app_verbose }} ({{ cookiecutter.app }}) {{ cookiecutter.version }}
+// {{ cookiecutter.author_name }} ({{ cookiecutter.email }})
+// 
+// Description:
+//
+///////////////////////////////////////////////////////////////////////////////
+
+import 'routes.dart';
+
+
+void main() {
+    new Routes();
+}

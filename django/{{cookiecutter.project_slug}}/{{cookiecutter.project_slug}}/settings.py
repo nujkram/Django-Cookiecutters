@@ -1,15 +1,15 @@
-from os import path
-from split_settings.tools import optional, include
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from split_settings.tools import include
 
-if path.isfile('/{{ cookiecutter.project_slug }}/local'):
-    env = 'local'
-elif path.isfile('/{{ cookiecutter.project_slug }}/onprem'):
-    env = 'onprem'
-elif path.isfile('/{{ cookiecutter.project_slug }}/staging'):
-    env = 'staging'
-else:
-    env = 'prod'
+try:
+    with open(os.path.join(BASE_DIR, 'ENV')) as f:
+        ENV = f.read().strip()
+except FileNotFoundError:
+    ENV = 'prod'
+    env_file = open(os.path.join(BASE_DIR, 'ENV'), 'w')
+    env_file.write(ENV)
+    env_file.close()
 
 include('apps.py')
-
-include(f'environments/{env}.py')
+include(f'environments/{ENV}.py')
