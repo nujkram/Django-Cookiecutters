@@ -5,8 +5,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import View
 
-from accounts.controllers.views.forms.account_forms import AccountUpdateForm, UpdatePasswordForm
-from profiles.controllers.views.forms.profile_forms import ProfileForm
+from accounts.controllers.views.account.forms.account_forms import AccountUpdateForm, UpdatePasswordForm
+from .forms.profile_forms import ProfileForm
 from profiles.models import Profile
 
 

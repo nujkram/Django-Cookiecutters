@@ -1,7 +1,5 @@
 {
-    "full_name": "Jorge Cosgayon",
-    "email": "jorge@springvalley.tech",
-    "project": "New SV Project",
+    "project": "New Servio Project",
     "project_slug": "{{ cookiecutter.project.lower().replace(' ', '_').replace('-', '_') }}",
     "box": "{{ cookiecutter.project }} Vagrant Box",
     "box_slug": "{{ cookiecutter.box.lower().replace(' ', '_').replace('-', '_') }}",

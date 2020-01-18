@@ -80,6 +80,11 @@ sudo systemctl enable rabbitmq-server
 sudo systemctl start rabbitmq-server
 sudo rabbitmq-plugins enable rabbitmq_management
 
+echo -e "${INFO}Installing Redis...${SUBDUED}"
+sudo apt install redis-server
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+
 echo -e "${INFO}Installing PostgreSQL...${SUBDUED}"
 sudo apt install -y postgresql-11 postgresql-server-dev-11 postgresql-contrib
 

@@ -182,9 +182,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             # |
             # | :::::: Provisions - Bash
             # |
-            if server["bash"]
-                srv.vm.provision :shell, :path => server["bash"]
-            end
+            # if server["bash"]
+            #     srv.vm.provision :shell, :path => server["bash"]
+            # end
 
             #srv.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/me.pub"
             #srv.vm.boot_timeout = 240

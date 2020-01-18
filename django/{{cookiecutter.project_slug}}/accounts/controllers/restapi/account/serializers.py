@@ -9,6 +9,15 @@ class AccountPublicSerializer(serializers.ModelSerializer):
             'username',
         )
 
+class AccountPrivateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Master
+        fields = (
+            'id',
+            'username',
+            'email'
+        )
+
 
 class AccountPublicCreateSerializer(serializers.ModelSerializer):
     class Meta:

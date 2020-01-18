@@ -1,7 +1,7 @@
 from django.urls import path
 
-from controllers.views.account import main as account_views
-from controllers.restapi.account import main as account_api
+from .controllers.views.account import main as account_views
+from .controllers.restapi.account import main as account_api
 
 urlpatterns = [
     path('login', account_views.AccountLoginView.as_view(), name='accounts_login'),

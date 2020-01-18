@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from accounts.models import Account as Master
 from accounts.utils.tokens import user_auth_data
 
-from serializers import AccountPublicCreateSerializer, LoginWithCredentialsSerializer
+from .serializers import AccountPublicCreateSerializer, LoginWithCredentialsSerializer
 
 ###############################################################################
 # Public

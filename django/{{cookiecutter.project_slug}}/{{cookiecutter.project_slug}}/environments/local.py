@@ -44,7 +44,7 @@ except FileNotFoundError:
 # SECURITY WARNING: don't run with debug turned on in production!
 
 try:
-    with open(os.path.join(BASE_DIR, 'DEBUG')) as f:
+    with open(os.path.join(BASE_DIR, '{{ cookiecutter.project_slug }}/DEBUG')) as f:
         _debug = f.read().strip()
         if _debug != "DO-NOT-USE-IN-PRODUCTION":
             DEBUG = False
@@ -194,7 +194,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
-ASGI_APPLICATION = "{{ cookiecutter.project_slug }}.routing.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -288,3 +287,17 @@ CORS_ALLOW_HEADERS = default_headers + (
 
 CELERY_BROKER = 'pyamqp://guest@localhost//'
 BROKER_URL = 'pyamqp://guest@localhost//'
+
+########################################################################################################################
+# Channels
+########################################################################################################################
+ASGI_APPLICATION = "{{ cookiecutter.project_slug }}.routing.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+            "symmetric_encryption_keys": [SECRET_KEY]
+        },
+    },
+}
