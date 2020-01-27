@@ -130,6 +130,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_EMAIL_FIELD = 'email'
+TOKEN_LIFETIME = 21600 # 6 hours
 # LOGIN_REDIRECT_URL = '/accounts/postlogin'
 
 ########################################################################################################################
