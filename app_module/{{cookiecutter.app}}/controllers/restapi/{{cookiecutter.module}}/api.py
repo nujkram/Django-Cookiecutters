@@ -40,7 +40,7 @@ class ApiPrivate{{cookiecutter.model}}ViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         filters = {
-            'active': True
+            'is_active': True
         }
         if 'id' in self.request.GET:
             filters['id'] = self.request.GET.get('id')
