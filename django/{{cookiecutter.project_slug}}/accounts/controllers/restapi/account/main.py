@@ -60,7 +60,7 @@ class ApiLoginWithCredentials(APIView):
         if not user:
             return Response({'detail': 'Invalid Credentials'}, status=status.HTTP_404_NOT_FOUND)
 
-        if not user.active:
+        if not user.is_active:
             return Response({'detail': 'Account has been deactivated'}, status=status.HTTP_403_FORBIDDEN)
 
         user_data = user_auth_data(user)
